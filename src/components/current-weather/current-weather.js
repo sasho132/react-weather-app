@@ -1,22 +1,22 @@
 import "./current-weather.css";
 
-const CurrentWeather = () => {
+const CurrentWeather = ({ data }) => {
     return (
         <div className="weather">
             <div className="top">
                 <img
-                    src="icons/01d.png"
+                    src={`icons/${data.weather[0].icon}.png`}
                     alt="weather"
                     className="weather-icon"
                 />
                 <div>
-                    <p className="city">Sofia</p>
-                    <p className="weather-desc">Sunny</p>
+                    <p className="city">{ data.city }</p>
+                    <p className="weather-desc">{ data.weather[0].description }</p>
                 </div>
             </div>
             <div className="bottom">
                 <p className="temperature">
-                    <span className="temp-value">26</span>&#176;C
+                    <span className="temp-value">{ Math.floor(data.main.temp) }</span>&#176;C
                 </p>
                 <div className="details">
                     <div className="parameter-row">
@@ -24,19 +24,19 @@ const CurrentWeather = () => {
                     </div>
                     <div className="parameter-row">
                         <span className="parameter-label">Feels like</span>
-                        <span className="parameter-value">28&#176;C</span>
+                        <span className="parameter-value">{ Math.floor(data.main.feels_like) }&#176;C</span>
                     </div>
                     <div className="parameter-row">
                         <span className="parameter-label">Wind</span>
-                        <span className="parameter-value">2 m/s</span>
+                        <span className="parameter-value">{ Math.floor(data.wind.speed) } m/s</span>
                     </div>
                     <div className="parameter-row">
                         <span className="parameter-label">Humidity</span>
-                        <span className="parameter-value">30%</span>
+                        <span className="parameter-value">{ data.main.humidity }%</span>
                     </div>
                     <div className="parameter-row">
                         <span className="parameter-label">Pressure</span>
-                        <span className="parameter-value">15 hPa</span>
+                        <span className="parameter-value">{ data.main.pressure } hPa</span>
                     </div>
                 </div>
             </div>
